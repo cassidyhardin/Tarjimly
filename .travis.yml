@@ -1,3 +1,43 @@
 language: ruby
 rvm:
  - 2.6.3
+
+bundler_args: --deployment --without development
+cache: bundler
+sudo: required
+
+
+
+before_install:
+  - gem update --system
+  - wget https://github.com/nats-io/gnatsd/releases/download/v0.9.4/gnatsd-v0.9.4-linux-amd64.zip -O /tmp/gnatsd.zip
+  - unzip /tmp/gnatsd.zip
+  - export PATH=$PATH:$PWD/gnatsd-v0.9.4-linux-amd64
+
+before_script:
+  - bundle exec rake db:create
+  - DB=mysql bundle exec rake parallel:create
+  - DB=postgres bundle exec rake parallel:create
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  - bundle exec rake $TASKS
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+services:
+  - mysql
+  - postgresql
+
+env:
+  global:
+    - CC_TEST_REPORTER_ID=[see here: https://docs.codeclimate.com/v1.0/docs/finding-your-test-coverage-token]
+    - CF_RUN_PERM_SPECS=false
+
+  matrix:
+    - COVERAGE=true DB=postgres TASKS=spec:all
+    - DB=mysql TASKS=spec:all
+    - TASKS=rubocop
