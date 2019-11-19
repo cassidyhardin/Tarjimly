@@ -1,6 +1,3 @@
-## Ignore Test Coverage Stuff
-echo "coverage" >> .gitignore
-
 ## Ignore Mac OS Stuff
 .DS_Store
 .AppleDouble
