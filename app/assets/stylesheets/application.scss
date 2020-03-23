@@ -13,12 +13,12 @@
  *=require font-awesome
  */
 
-@import "bootstrap-sprockets";
+// @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
 
 body {
-  background-color: rgb(250, 250, 252);
+  background-color: #f8f9fa;
 }
 
 .page-header-container {
@@ -634,8 +634,19 @@ body {
   margin-bottom: 0;
 }
 
+.no-mg-tb{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+
 .mg-top-15 {
   margin-top: 15px;
+}
+
+.mg-top-5 {
+  margin-top: 5px;
 }
 
 .mg-bt-5 {
@@ -650,6 +661,10 @@ body {
 
 .mg-10 {
   margin: 10px ;
+}
+
+.pad-bt-5 {
+  padding-bottom: 5px;
 }
 
 .pad-10 {
@@ -812,6 +827,30 @@ input[type="checkbox"]:checked + label {
   display: block;
   margin: -10px -20px;
   padding: 10px 20px;
+}
+
+
+.btn.dropdown-toggle:focus {
+  outline: none !important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color:blue;
+}
+.custom-checkbox.custom-control {
+  display: inline-flex;
+}
+
+.new_request {
+  .form-control{
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+  }
+}
+
+.bs-ok-default.check-mark {
+  font-size: 10px;
+  top: 10px !important;
 }
 
 .alert-alert {

@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= csrf_meta_tags %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
 
 <div class="flex-container pad-for-nav">
@@ -44,7 +46,10 @@
           <% end %>
         </h3>
         <div class="flex">
-          <%= button_to "New Request", new_request_path, action: "new", method: :get, id: "new_request_button", class:"btn btn-primary", style:"margin-right: 10px "%>
+          <button type="button" style="margin-right: 10px"  class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+            New Request
+          </button>
+
           <label class="dropdown">
             <div class="dd-button">
               Filter
@@ -52,9 +57,9 @@
             <input type="checkbox" class="dd-input" id="test">
 
             <ul class="dd-menu">
-              <li><%= link_to "All Requests", requests_path() %></li>
-              <li><%= link_to "Pending Requests", requests_path(status: 0) %></li>
-              <li><%= link_to "Completed Requests", requests_path(status: 1) %></li>
+              <li><%= link_to "All Requests", requests_url() %></li>
+              <li><%= link_to "Pending Requests", requests_url(status: 0) %></li>
+              <li><%= link_to "Completed Requests", requests_url(status: 1) %></li>
             </ul>
           </label>
         </div>
@@ -113,6 +118,82 @@
           </div>
         <% end %>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- New Request Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">New Request</h5>
+
+      </div>
+       <%= form_for @request do |r| %>
+        <div class="modal-body">
+         
+         <div class="form-group">
+            <%= r.label(:from_language, "From Lanaguage", {class:"pad-bt-5"})%><br>
+            <%= r.select("from_language", options_for_select(@languages), {prompt: "Select Language"}, {class: "form-control selectpicker", required: true, "data-live-search": true, "data-live-search-placeholder": "Search Languages" }) %>
+          </div>
+          <div class="form-group">
+            <%= r.label(:to_language, "To Language(s)", {class:"pad-bt-5"})%><br>
+            <%= r.select("to_language", options_for_select(@languages), {}, {class: "form-control selectpicker", multiple: true, required: true, "data-live-search": true, "data-live-search-placeholder": "Search Languages" }) %>
+          </div>
+
+           <div class="form-group">
+            <%= r.label :title %><br>
+            <%= r.text_field(:title, required: true, class: "form-control") %>
+          </div>
+         
+          <div class="form-group">
+          <%#  <% if @format == "text"%>
+              <%= r.label(:document, {class:"no-mg-tb"})%>
+              <small class="form-text text-muted no-mg-tb mg-bt-5"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. </small> 
+              <%= r.text_area(:document_text, rows: 5,  required: true, direct_upload: true,  contenteditable:"true", class: "form-control") %>
+              <%# <%= link_to "Upload File Instead", new_request_path(document_format: "upload"), method: :get %>
+            <%# <% else %>
+            <%#  <%= r.label :document_uploads %>
+            <%#  <%= r.file_field(:document_uploads, multiple: true, accept: 'image/png, image/jpeg, application/pdf', required: true, class: "form-control-file") %>
+            <%#  <%= link_to "Enter Text Instead", new_request_path(document_format: "text"), method: :get %>
+            <%# <% end %>
+          </div>
+           <script>
+            $(function () {
+              $('.selectpicker').selectpicker();
+            });
+            $.fn.selectpicker.Constructor.BootstrapVersion = '4';
+          </script>
+
+
+          <div class="form-group">
+            <%= r.label(:instructions, {class:"no-mg-tb"}) %>
+            <small class="form-text text-muted no-mg-tb mg-bt-5"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small> 
+            <%= r.text_field(:description, required: true, class: "form-control") %>
+          </div>
+          
+
+          <%= r.hidden_field :document_format, value: @format %>
+
+          <div class="form-group">
+            <%= r.label :deadline %><br>
+            <%= r.date_field(:deadline, min: Date.today, required: true, class: "form-control") %>
+          </div>
+
+
+          <div class="form-group">
+            <%= r.label :categories %><br>
+            <%= r.select("categories", options_for_select(@categories), {}, {class: "form-control selectpicker", multiple: true, required: true}) %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <%= r.submit class: "btn btn-primary" %>
+            
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

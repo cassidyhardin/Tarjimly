@@ -45,7 +45,7 @@ class ClaimsController < ApplicationController
     @name = session[:name]
     @role = session[:role]
     @status = params[:status] || [0,1]
-    @claims = Claim.where({translator_tarjimly_id: @translatorID, _status: @status})
+    @claims = Claim.where({translator_tarjimly_id: @translatorID, _status: @status}).sort_by{ |c| [c._status, c.request.deadline]}
     @dismiss_claims = Claim.where({translator_tarjimly_id: @translatorID, _status: [2, 3]})
     @total_count = Claim.where({translator_tarjimly_id: @translatorID, _status: 1}).count
     if Claim.where({translator_tarjimly_id: @translatorID , _status: 3}).present?
