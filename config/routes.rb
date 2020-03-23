@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   #Login
   post '/auth' => 'auth#authenticate', :as => 'validate_login'
   get '/auth' => 'auth#logout', :as => 'logout'
+  get ‘/auth/facebook/callback’ => 'auth#authenticateFB'
+
 
 
   #User Pages

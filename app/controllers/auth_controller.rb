@@ -33,6 +33,10 @@ class AuthController < ApplicationController
         end
     end 
 
+    def authenticateFB
+
+    end
+
     def logout 
         session.clear
         cookies.clear

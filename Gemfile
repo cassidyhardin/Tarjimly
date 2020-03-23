@@ -90,3 +90,6 @@ gem 'aws-sdk'
 gem 'rack-flash3'
 gem 'webpacker'
 gem "font-awesome-rails"
+
+gem "omniauth"
+gem "omniauth-facebook"
