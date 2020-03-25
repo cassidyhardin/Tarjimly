@@ -177,9 +177,11 @@ class RequestsController < ApplicationController
     
     def completed
         @requests = Request.where(user_tarjimly_id: @userID, _status: 3)
+       
         if @requests.present?
+            flash[:success] = []
             @requests.each do |request|
-                flash[:success] = "Your request #{view_context.link_to(request.title,  request_path(request_id: request.id))} has been translated!".html_safe
+                flash[:success] << "Your request #{view_context.link_to(request.title,  request_path(request_id: request.id))} has been translated!"
                 request._status = 1
                 request.save!
             end 

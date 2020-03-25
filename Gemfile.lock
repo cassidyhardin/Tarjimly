@@ -1033,6 +1033,7 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
+    erubis (2.7.0)
     et-orbi (1.2.4)
       tzinfo
     execjs (2.7.0)
@@ -1260,6 +1261,7 @@ DEPENDENCIES
   data-confirm-modal
   database_cleaner (= 1.4.1)
   detect_timezone_rails
+  erubis
   figaro
   font-awesome-rails
   haml
