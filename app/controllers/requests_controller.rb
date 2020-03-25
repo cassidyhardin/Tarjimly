@@ -76,6 +76,7 @@ class RequestsController < ApplicationController
     end
     
     def create
+        flash[:success] = []
         params[:request]['to_language'].each do |to_lang|
             if to_lang.nil? || to_lang.empty?
                 next
@@ -107,8 +108,11 @@ class RequestsController < ApplicationController
             if !@request.save
                 flash[:alert] = "Uh Oh! There was an error creating your request."
             end
+            flash[:success] << "Successfully created your request '#{@request.title}''."
         end
-        flash[:success] = "Successfully created your request(s)."
+       
+       
+
         redirect_to requests_url
     end
 
