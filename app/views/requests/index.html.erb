@@ -1,5 +1,3 @@
-require 'erb'
-
 <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= csrf_meta_tags %>
@@ -50,7 +48,7 @@ require 'erb'
 
     </div>
     <div class="flex-body">
-      <div class="spread mg-10" >
+      <div class="card-spread mg-10" >
         <h3 class="section-header-big">
           <% if @status.is_a?(String) && @status.to_i == 0%>
             Pending Requests
@@ -60,7 +58,7 @@ require 'erb'
             My Requests
           <% end %>
         </h3>
-        <div class="flex">
+        <div class="flex phone-header">
           <button type="button" style="margin-right: 10px"  class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
             New Request
           </button>
@@ -113,7 +111,7 @@ require 'erb'
                 <%=request.to_language %>
             </p>
             <p class="card-text">
-              <%= request.description %><br />
+              <%= simple_format(request.description) %>
             </p>
             <div class="card-row">
               <div class="">
@@ -152,6 +150,11 @@ require 'erb'
       </div>
        <%= form_for @request do |r| %>
         <div class="modal-body">
+
+        <div class="form-group">
+            <%= r.label :title %><br>
+            <%= r.text_field(:title, required: true, class: "form-control") %>
+          </div>
          
          <div class="form-group">
             <%= r.label(:from_language, "From Lanaguage", {class:"pad-bt-5"})%><br>
@@ -162,16 +165,13 @@ require 'erb'
             <%= r.select("to_language", options_for_select(@languages), {}, {class: "form-control selectpicker", multiple: true, required: true, "data-live-search": true, "data-live-search-placeholder": "Search Languages" }) %>
           </div>
 
-           <div class="form-group">
-            <%= r.label :title %><br>
-            <%= r.text_field(:title, required: true, class: "form-control") %>
-          </div>
+           
          
           <div class="form-group">
           <%#  <% if @format == "text"%>
               <%= r.label(:document, {class:"no-mg-tb"})%>
-              <small class="form-text text-muted no-mg-tb mg-bt-5"> Please copy and paste the specific text that you would like translated below, in the order in which you would like it to be translated. Our translators will provide a line for line translation for what you enter here. We recommend numbering each paragraph or line before your text in order to make it clear to the translator </small> 
-              <%= r.text_area(:document_text, rows: 5,  required: true, direct_upload: true,  contenteditable:"true", class: "form-control") %>
+              <small class="form-text text-muted no-mg-tb mg-bt-5"> Please copy and paste the specific text that you would like translated below, in the order in which you would like it to be translated. Our translators will provide a line for line translation for what you enter here. We recommend numbering each paragraph or line before your text in order to make it clear to the translator. </small> 
+              <%= r.text_area(:document_text, rows: 8,  required: true, direct_upload: true,  contenteditable:"true", class: "form-control") %>
               <%# <%= link_to "Upload File Instead", new_request_path(document_format: "upload"), method: :get %>
             <%# <% else %>
             <%#  <%= r.label :document_uploads %>
@@ -185,7 +185,7 @@ require 'erb'
           <div class="form-group">
             <%= r.label(:instructions, {class:"no-mg-tb"}) %>
             <small class="form-text text-muted no-mg-tb mg-bt-5"> If there are any specific instructions for your translation, such as addressing young children and using simpler language, please include them here so our translators will be able to provide the best possible translation for your request. </small> 
-            <%= r.text_field(:description, required: true, class: "form-control") %>
+            <%= r.text_area(:description, required: true, class: "form-control") %>
           </div>
           
 
