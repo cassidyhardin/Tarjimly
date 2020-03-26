@@ -30,7 +30,7 @@
     </p>
 
     <p class="lead lead-no-margin" style="margin-bottom: 10px"> 
-      <%= @request.description %><br/>
+      <%= simple_format(@request.description) %>
         <% if @request.categories%>
             <div class="tags-container">
               <% @request.categories.each do |c| %>
