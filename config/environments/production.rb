@@ -8,6 +8,8 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = false
 
   config.action_mailer.delivery_method     = :aws_sdk
+  config.action_mailer.perform_deliveries = false
+
   config.action_mailer.smtp_settings = {
    address:              'email-smtp.us-west-2.amazonaws.com',
    port:                 587,

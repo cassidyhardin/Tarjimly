@@ -20,4 +20,4 @@ Feature: get the correct number of days
 
   Scenario: check the previous dates
     Given I go to the "Claims" page
-    Then I should see "days ago"
+    Then I should see "November"

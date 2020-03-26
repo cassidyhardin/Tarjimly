@@ -30,7 +30,7 @@ describe "Creating a new request" do
     fill_in 'request_title', with: 'Rspec Test'
     fill_in 'request_description', with: 'Rspec Test Description'
     fill_in 'request_document_text', with: 'Rspec Test Document'
-    fill_in 'request_deadline', with: '2097-08-08'
+    fill_in 'request_deadline', with: '03/25/2020 11:04 AM'
     select 'English', from: 'request_from_language'
     select 'Afar', from: 'request_to_language'
     click_button('Create Request')

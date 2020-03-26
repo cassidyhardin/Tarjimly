@@ -21,7 +21,6 @@ Feature: view previously submitted request
         When I click button "View" from the list of request
         Then I should see "information"
         Then I should see "English" and "Arabic"
-        Then I should see "Deadline"
 
     Scenario: return to all requests
         Given I go to the "Requests" page
