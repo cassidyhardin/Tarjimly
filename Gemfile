@@ -98,3 +98,5 @@ gem 'rufus-scheduler'
 gem 'rack-flash3'
 gem 'webpacker'
 gem "font-awesome-rails"
+
+gem  'erubis'

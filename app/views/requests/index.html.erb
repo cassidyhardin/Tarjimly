@@ -1,3 +1,5 @@
+require 'erb'
+
 <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= csrf_meta_tags %>
@@ -23,12 +25,21 @@
       <div class="notifications-container">
           <% flash.each do |key, value| %>
           <% if key != 'alert'%>
+            <% if key == 'success' %>
+            <% value.each do |val| %>
+              <div class="alert alert-<%= key %> alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <%= raw val %>
+                    </div>
+              <% end %>
+             <% else%>
               <div class="alert alert-<%= key %> alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <%= value %>
               </div>
-            <%end%>
 
+            <%end%>
+            <%end%>
           <% end %>
           <% if flash.nil? || flash.empty? %>
             <div class="alert alert-warning" role="alert">
