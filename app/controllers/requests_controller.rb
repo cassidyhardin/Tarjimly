@@ -40,7 +40,7 @@ class RequestsController < ApplicationController
             # pair[0] = ""
             # @categories.push JSON.parse(pair)['language']
         # end
-        @categories = ["Day To Day", "Legal", "Medical", "Housing", "Food", "Clothing", "Education", "Employment", "Immigration", "Asylum Interveiw", "Assylum Docs"]
+        @categories = ["Coronavirus", "Day To Day", "Legal", "Medical", "Housing", "Food", "Clothing", "Education", "Employment", "Immigration", "Asylum Interveiw", "Assylum Docs"]
         @format = params[:document_format] || "text"
         @request = Request.new
     end
