@@ -49,7 +49,7 @@
       </p>
       <div class="document-text">
         <p class="lead lead-small lead-no-margin"> 
-            <%= @request.document_text %>
+            <%= simple_format(@request.document_text) %>
         </p>
       </div>
     <% else %>

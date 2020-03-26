@@ -60,7 +60,7 @@
         </p>
         <div class="document-text">
           <p class="lead lead-small lead-no-margin"> 
-              <%= @request.document_text %>
+              <%=simple_format(@request.document_text) %>
           </p>
         </div>
       <% else %>
@@ -84,7 +84,7 @@
       </p>
       <div class="document-text">
         <p class="lead lead-small lead-no-margin"> 
-          <%= @claim.nil? ? nil : @claim.translation_text %>
+          <%= @claim.nil? ? nil : simple_format(@claim.translation_text) %>
         </p>
       </div>
     </div>
