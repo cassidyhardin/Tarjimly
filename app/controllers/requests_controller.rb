@@ -25,22 +25,14 @@ class RequestsController < ApplicationController
         @requests = Request.where(user_tarjimly_id: @userID, _status: @status).sort_by{ |r| r.created_at}.reverse!
         @total_count = Request.where(user_tarjimly_id: @userID, _status: [0,1]).count
 
-        # New Request
+        # New Request Modal
         response = RestClient.get( 'https://tarjim.ly/api/mobile/v1/public/all-languages')
         @languages = Array.new
         response.body.scan(/[^}]*}/).each do |pair|
             pair[0] = ""
             @languages.push JSON.parse(pair)['language']
         end
-        # TODO: NEED END POINT FOR THE CATEGORY OPTIONS IN TARJIMLY SERVER
-
-        # response_two = RestClient.get( 'https://tarjim.ly/api/mobile/v1/public/all-languages')
-        # @categories = Array.new
-        # response_two.body.scan(/[^}]*}/).each do |pair|
-            # pair[0] = ""
-            # @categories.push JSON.parse(pair)['language']
-        # end
-        @categories = ["Coronavirus", "Day To Day", "Legal", "Medical", "Housing", "Food", "Clothing", "Education", "Employment", "Immigration", "Asylum Interveiw", "Assylum Docs"]
+        @categories = ["Coronavirus", "Day To Day", "Legal", "Medical", "Housing", "Food", "Clothing", "Education", "Employment", "Immigration", "Asylum Interveiw", "Assylum Docs", "Other"]
         @format = params[:document_format] || "text"
         @request = Request.new
     end
