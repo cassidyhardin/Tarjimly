@@ -37,7 +37,7 @@
         <%=@request.to_language %>
     </p>
     <p class="lead lead-no-margin" style="margin-bottom: 10px"> 
-      <%= @request.description %><br/>
+      <%= simple_format(@request.description) %>
         <% if @request.categories%>
             <div class="tags-container">
               <% @request.categories.each do |c| %>
@@ -93,7 +93,7 @@
     </div>
   <% else %>
     <div class="pending-translation-message lead lead-small">
-      Our translators are busy at work on your request! Please check back after your deadline.
+      Our translators are busy at work on your request! We will notify you when your translation is complete <i class="feather" data-feather="smile" style="color: black"></i> 
     </div>
     <div class="pad-container" style="display:flex">
       <%= button_to "Delete Request", delete_request_path(request_id: @request.id), request_id: @request.id, action: "delete", method: :delete, data: { confirm: 'Are you sure you want to delete this request?', title: 'Confirm Request Deletion', commit: 'YES', cancel: 'NO'}, class: "btn btn-primary" %>
@@ -102,5 +102,5 @@
   <%end%>
 </div>
 <script>
-  feather.replace();
+  feather.replace({"stroke-width": "1.5"});
 </script>
