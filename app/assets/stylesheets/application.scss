@@ -12,7 +12,6 @@
  *
  *=require font-awesome
  */
-
 $primary: #337ab7;
 @import "bootstrap";
 @import "font-awesome";
@@ -443,14 +442,19 @@ $primary: #337ab7;
 
 .tags-container{
   margin: 5px 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 .tag {
   font-size: 13px;
   font-weight: 500;
-  padding: 5px;
+  padding: 6px;
+  padding-right: 13px;
+  padding-left: 13px;
   border-radius: 2px;
-  margin-right: 3px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 1px 1px rgba(0,0,0,0.05);
+  margin-right: 7px;
+  margin-bottom: 9px;
+  border-radius: 20px;
 }
 .tag-big {
   @media only screen and (min-width: 800px) {
@@ -459,16 +463,16 @@ $primary: #337ab7;
 }
 
 .tag-blue{
-  background-color: rgb(190, 225, 237);
+  background-color: #b0e1ff;
 }
 .tag-pink{
   background-color: rgb(246, 215, 220);
 }
 .tag-orange{
-  background-color: rgb(251, 236, 218);
+  background-color: rgb(252, 231, 206);
 }
 .tag-green{
-  background-color: rgb(208, 249, 208);
+  background-color: rgb(204, 252, 204);
 }
 .tag-purple{
   background-color: lavender;
@@ -494,10 +498,7 @@ $primary: #337ab7;
 }
 
 .title {
-  @media only screen and (min-width: 800px) {
     font-size: 24px;
-  }
-  font-size: 18px;
   color: #337ab7;
   margin: 5px 0;
   margin-right: 5px;
@@ -572,10 +573,22 @@ $primary: #337ab7;
     margin:10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 14px rgba(0,0,0,0.05);
 
+    ::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 7px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, .5);
+      box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    }
+
     .document-text {
-      max-height: 40%;
+      max-height: 300px;
       overflow-y: scroll;
       -webkit-overflow-scrolling: touch;
+
     }
     .lead-small{
       @media only screen and (min-width: 800px) {
@@ -784,7 +797,7 @@ input[type="checkbox"]:checked + label {
   color: #337ab7;
   font-weight: 400;
   font-size: 18px;
-  z-index: 3;
+  z-index: 5;
 }
 
 .dd-alt {
@@ -829,6 +842,7 @@ input[type="checkbox"]:checked + label {
   box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
   background-color: #ffffff;
   list-style-type: none;
+  z-index: 5;
 }
 
 .dd-input + .dd-menu {
@@ -912,6 +926,14 @@ input[type="checkbox"]:checked + label {
     flex-flow: column;
     padding-bottom: 5px;
   }
+  .phone-header {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
 }
+
+
+
 
 
