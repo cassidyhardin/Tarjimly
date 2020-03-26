@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="flex-body">
-      <div class="spread pad-10" >
+      <div class="card-spread pad-10" >
         <h3 class="section-header-big">
           <% if @status.is_a?(String) && @status.to_i == 0%>
             Pending Claims
@@ -43,7 +43,7 @@
             My Claims
           <% end %>
         </h3>
-        <div class="flex">
+        <div class="flex  phone-header">
           <%= button_to "Browse Requests", view_requests_path, action: "requests", method: :get, class:"btn btn-primary", style:"margin-right: 10px "%>
           <label class="dropdown">
             <div class="dd-button dd-alt">
@@ -107,7 +107,7 @@
                 <%=request.to_language %>
             </p>
             <p class="card-text">
-              <%= request.description %><br />
+              <%= simple_format(request.description) %>
             </p>
             <div class="card-row">
               <div class="card-col-1">
